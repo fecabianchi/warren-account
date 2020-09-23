@@ -13,12 +13,14 @@ describe('PaymentControllerTest', () => {
         _id: mongoose.Types.ObjectId('6edd40c86762e0fb12000003'),
         balance: 1000.00,
         name: 'Test account',
+        lastRemuneration: new Date(),
         userId: mongoose.Types.ObjectId('7edd40c86762e0fb12000003')
       },
       {
         _id: mongoose.Types.ObjectId('8edd40c86762e0fb12000003'),
         balance: 10000.00,
         name: 'Test account 2',
+        lastRemuneration: new Date(),
         userId: mongoose.Types.ObjectId('9edd40c86762e0fb12000003')
       }
     ])

@@ -8,23 +8,20 @@ describe('HistoryControllerTest', () => {
   const historyController = new HistoryController();
 
   beforeAll(async () => {
-    await History.deleteMany({});
-    await History.insertMany([
-      {
-        userId: '5edd40c86762e0fb12000003',
-        previousBalance: 1000.00,
-        currentBalance: 900.00,
-        value: 100.00,
-        operation: OperationEnum.WITHDRAW
-      },
-      {
-        userId: '5edd40c86762e0fb12000003',
-        previousBalance: 900.00,
-        currentBalance: 950.00,
-        value: 50.00,
-        operation: OperationEnum.DEPOSIT
-      }
-    ]);
+    await History.create({
+      userId: '5edd40c86762e0fb12000003',
+      previousBalance: 1000.00,
+      currentBalance: 900.00,
+      value: 100.00,
+      operation: OperationEnum.WITHDRAW      
+    });
+    await History.create({
+      userId: '5edd40c86762e0fb12000003',
+      previousBalance: 900.00,
+      currentBalance: 950.00,
+      value: 50.00,
+      operation: OperationEnum.DEPOSIT
+    });
   });
 
   afterAll(async () => {

@@ -3,6 +3,7 @@ import * as mongoose from 'mongoose';
 import { connection } from '../../src/config/db';
 import AccountController from '../../src/controllers/AccountController';
 import Account from '../../src/models/Account';
+import * as dayjs from 'dayjs';
 
 describe('AccountControllerTest', () => {
   const accountController = new AccountController();
@@ -12,6 +13,7 @@ describe('AccountControllerTest', () => {
       _id: mongoose.Types.ObjectId('4edd40c86762e0fb12000003'),
       balance: 1000.00,
       name: 'Teste account',
+      lastRemuneration: dayjs().subtract(1, 'd').format(),
       userId: mongoose.Types.ObjectId('5edd40c86762e0fb12000003')
     });
   });
@@ -37,11 +39,10 @@ describe('AccountControllerTest', () => {
 
       const result = await accountController.show(event);
       const parsedBody = JSON.parse(result.body);
-
       expect(result.statusCode).toBe(200);
       expect(parsedBody._id).toBe('4edd40c86762e0fb12000003');
       expect(parsedBody.userId).toBe('5edd40c86762e0fb12000003');
-      expect(parsedBody.balance).toBe(1000);
+      expect(parsedBody.balance).toBe(1010);
     });
   });
 
