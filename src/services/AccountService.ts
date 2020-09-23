@@ -5,14 +5,26 @@ import AccountRepository from '../repositories/AccountRepository';
 import HistoryRepository from '../repositories/HistoryRepository';
 import HistoryTransform from '../transforms/HistoryTransform';
 import MiscUtils from '../utils/MiscUtils';
+import DateUtils from '../utils/DateUtils';
 
 export default class AccountService {
   private accountRepository: AccountRepository;
   private historyRepository: HistoryRepository;
+  private tax: number;
 
   constructor() {
     this.accountRepository = new AccountRepository();
     this.historyRepository = new HistoryRepository();
+    this.tax = 1;
+  }
+
+  remunerate(account: IAccount) {
+    const date = new Date();
+    const days = Math.floor(DateUtils.dateDiff(account.lastRemuneration, date));
+    account.balance += account.balance * ((this.tax / 100) * days);
+    account.lastRemuneration = date;
+
+    return account.save();
   }
 
   async withdraw(account: IAccount, value: number) {

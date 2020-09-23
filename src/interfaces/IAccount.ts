@@ -5,4 +5,5 @@ export interface IAccount extends Document {
   name: string;
   balance: number;
   userId: Types.ObjectId;
+  lastRemuneration: Date;
 }

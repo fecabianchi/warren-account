@@ -12,6 +12,10 @@ const AccountSchema = new Schema({
     required: true,
     default: 0.00
   },
+  lastRemuneration: {
+    type: Date,
+    default: new Date()
+  },
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',

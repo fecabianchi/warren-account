@@ -27,7 +27,8 @@ export default class AccountController {
   public async show(event: APIGatewayProxyEvent) {
     const { principalId } = event.requestContext.authorizer;
 
-    const account = await this.accountRepository.findOneByUserId(principalId);
+    const resource = await this.accountRepository.findOneByUserId(principalId);
+    const account = await this.accountService.remunerate(resource);
 
     return {
       statusCode: 200,
