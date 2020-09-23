@@ -66,5 +66,22 @@ Retorna o histórico / extrato das transações feitas
 
 __Requer autenticação__
 
+## Testes
+
+Para rodar os testes, basta instalar as dependências usando `npm i` e rodar o `npm t` ou `npm run test` para executar os testes.
+
+## Deploy
+
+A API já se encontra publicada na `aws` na URL `https://faevqnmzp7.execute-api.us-east-1.amazonaws.com/dev` 
+
+Porém, caso seja de interesse executar no próprio ambiente, siga os passos abaixo.
+
+### Local
+Para rodar a API em ambiente local, basta criar um arquivo `.env` seguindo o `.env.example` como exemplo, instalar as dependências com `npm i` e rodar `npm run serve`.
+
+### Homologação / Produção
+Para publicar a API na AWS, basta criar um arquivo `.env` seguindo o `.env.example` como exemplo, instalar as dependências com `npm i`, configurar um `aws profile` e setar o `profile` no `serverless.yml` e rodar um `npm run deploy`
+
+
 ## Observação
 Como a aplicação estão rodando em _lambdas_, sem nenhuma camada de cache na frente, a primeira chamada pode apresentar uma latência elevada, por conta do _cold start_
