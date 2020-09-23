@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "es2017"
+    ],
+    "module": "commonjs",
+    "removeComments": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "target": "es2017",
+    "outDir": "build"
+  },
+  "include": [
+    "src/**/*",
+  ],
+  "exclude": [
+    "node_modules/**/*",
+    ".serverless/**/*",
+    "_warmup/**/*",
+    ".vscode/**/*"
+  ]
+}

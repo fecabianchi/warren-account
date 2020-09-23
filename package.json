@@ -1,0 +1,63 @@
+{
+  "name": "warren-account",
+  "version": "1.0.0",
+  "description": "Microservices for handling a account",
+  "main": "handler.js",
+  "scripts": {
+    "clean": "rimraf build",
+    "compile": "tsc",
+    "deploy": "npm run clean && npm run compile && serverless deploy --profile beep-sls",
+    "serve": "npm run clean && npm run compile && sls offline",
+    "test": "jest",
+    "commit": "npx git-cz"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.601.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "middy": "^0.33.2",
+    "mongoose": "^5.10.5"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@serverless/event-mocks": "^1.1.1",
+    "@shelf/jest-mongodb": "^1.2.3",
+    "@types/aws-lambda": "^8.10.17",
+    "@types/aws-sdk": "^2.7.0",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/jest": "^26.0.10",
+    "@types/joi": "^14.3.4",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/mongodb": "^3.5.27",
+    "@types/mongoose": "^5.7.36",
+    "@types/node": "^10.12.18",
+    "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "@typescript-eslint/parser": "^2.15.0",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^6.8.0",
+    "husky": "^4.0.6",
+    "jest": "^26.4.2",
+    "rimraf": "^3.0.2",
+    "serverless": "^1.60.5",
+    "serverless-offline": "^6.0.0-alpha.61",
+    "serverless-prune-plugin": "^1.4.1",
+    "ts-jest": "^26.2.0",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.2.4"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

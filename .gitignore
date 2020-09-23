@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# Compile
+build
+
+# ENV
+.env

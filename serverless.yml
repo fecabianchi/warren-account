@@ -1,0 +1,23 @@
+service:
+  name: warren-account
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  profile: beep-sls
+  region: us-east-1
+  apiGateway:
+    minimumCompressionSize: 1024
+  environment:
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+
+plugins:
+  - serverless-prune-plugin
+  - serverless-offline
+
+custom:
+  prune:
+    automatic: true
+    number: 3
+
+functions:
