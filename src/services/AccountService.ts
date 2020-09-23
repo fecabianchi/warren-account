@@ -1,13 +1,18 @@
 import { connection } from '../config/db';
+import { OperationEnum } from '../enums/OperationEnum';
 import { IAccount } from '../interfaces/IAccount';
 import AccountRepository from '../repositories/AccountRepository';
+import HistoryRepository from '../repositories/HistoryRepository';
+import HistoryTransform from '../transforms/HistoryTransform';
 import MiscUtils from '../utils/MiscUtils';
 
 export default class AccountService {
   private accountRepository: AccountRepository;
+  private historyRepository: HistoryRepository;
 
   constructor() {
     this.accountRepository = new AccountRepository();
+    this.historyRepository = new HistoryRepository();
   }
 
   async withdraw(account: IAccount, value: number) {
@@ -19,8 +24,11 @@ export default class AccountService {
       return this.accountRepository.updateBalance(account.id, balance)
     });
 
+    const response = await this.accountRepository.findById(account.id);
+    await this.historyRepository.create(HistoryTransform.input(account, response, value, OperationEnum.WITHDRAW));
     session.endSession();
-    return this.accountRepository.findById(account.id);
+
+    return response;
   }
 
   async deposit(account: IAccount, value: number) {
@@ -31,7 +39,10 @@ export default class AccountService {
       return this.accountRepository.updateBalance(account.id, balance);
     });
 
+    const response = await this.accountRepository.findById(account.id);
+    await this.historyRepository.create(HistoryTransform.input(account, response, value, OperationEnum.DEPOSIT));
     session.endSession();
-    return this, this.accountRepository.findById(account.id);
+
+    return response;
   }
 }
