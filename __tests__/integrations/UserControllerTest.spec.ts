@@ -4,6 +4,7 @@ import UserController from '../../src/controllers/UserController';
 import { User } from '../../src/models';
 
 describe('UserControllerTest', () => {
+  
   const userController = new UserController();
 
   beforeAll(async () => {
@@ -28,6 +29,7 @@ describe('UserControllerTest', () => {
         }
       } as any);
 
+      process.env.JWT_SECRET = 'super_secret'
       const result = await userController.login(event);
       const parsedBody = JSON.parse(result.body);
 
