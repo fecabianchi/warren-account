@@ -11,7 +11,7 @@ export default class PaymentValidator {
     return Joi.object({
       description: Joi.string().required(),
       destinationAccount: Joi.string().required(),
-      value: Joi.number().required()
+      value: Joi.number().positive().required()
     })
   }
 }

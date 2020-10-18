@@ -15,7 +15,7 @@ export default class AccountValidator {
 
   protected static accountSchema() {
     return Joi.object({
-      value: Joi.number().required()
+      value: Joi.number().positive().required()
     })
   }
 }
